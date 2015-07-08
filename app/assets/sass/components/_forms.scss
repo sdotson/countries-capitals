@@ -1,0 +1,101 @@
+input[type=email], input[type=text], input[type=tel], input[type=password] {
+	font-size: 14px;
+	border: solid 1px #222;
+	line-height: 1;
+	padding: 17px 19px;
+}
+
+input[type=submit] {
+	font-size: 29px;
+	font-weight: bold;
+	background-color: #bb1014;
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	border: none;
+	border-radius: 0px;
+	display: inline-block;
+	color: #fff;
+	text-transform: uppercase;
+	font-family: 'Yanone Kaffeesatz', sans-serif;
+	padding: 9px 0px;
+	cursor: pointer;
+
+	&:hover {
+		background-color: #d72c30;
+		text-decoration: none;
+	}
+}
+
+.form-item {
+	margin-bottom: 10px;
+}
+
+
+/* custom checkbox */
+.form-type-checkbox {
+
+	label {
+		display: inline-block;
+		font-weight: normal;
+		position: relative;
+		margin-bottom: 23px;
+		margin-left: 35px;
+		text-align: left;
+
+		&:before {
+			content: '';
+			background: url(../images/checkbox.png) top left;
+			width: 27px;
+			height: 29px;
+			display: block;
+			cursor: pointer;
+			position: absolute;
+			left: -35px;
+			top: -5px;
+		}
+	}
+
+	input[type=checkbox] {
+		display: none;
+	}
+}
+
+input[type=checkbox]:checked+label:before {
+	background-position: top right;
+}
+
+/* custom select */
+.select-wrapper {
+	display: inline-block;
+	overflow: hidden;
+	position: relative;
+	width: 100%;
+	background-color: #fff;
+
+	&:after {
+		content: '';
+		display: block;
+		position: absolute;
+		top: 0;
+		right: 0;
+		background: url(../images/select-arrow.png) no-repeat center;
+		width: 42px;
+		height: 42px;
+		z-index: 2;
+	}
+
+	select {
+		cursor: pointer;
+		font-size: 14px;
+		border: none;
+		background-color: transparent;
+		width: 115%;
+		position: relative;
+		z-index: 10;
+		-webkit-appearance: none;
+
+		&:focus {
+			outline: none;
+		}
+	}
+}

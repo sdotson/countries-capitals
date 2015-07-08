@@ -1,0 +1,117 @@
+/* mobile nav */
+.mobile-nav {
+  float: right;
+  display: none;
+  position: relative;
+  overflow: hidden;
+  margin: 0;
+  margin-right: 20px;
+  padding: 0;
+  width: 41px;
+  height: 40px;
+  font-size: 0;
+  text-indent: -9999px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  box-shadow: none;
+  border-radius: none;
+  border: none;
+  cursor: pointer;
+  -webkit-transition: background 0.3s;
+  -moz-transition: background 0.3s;
+          transition: background 0.3s;
+
+    @media screen and (max-width: 600px) {
+		display: block;
+	}
+}
+
+.mobile-nav:focus {
+  outline: none;
+}
+
+.mobile-nav span {
+  display: block;
+  position: absolute;
+  top: 20px;
+  left: 0px;
+  right: 0px;
+  height: 4px;
+  background: white;
+}
+
+.mobile-nav span::before,
+.mobile-nav span::after {
+  position: absolute;
+  display: block;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background-color: #fff;
+  content: "";
+}
+
+.mobile-nav span::before {
+  top: -10px;
+}
+
+.mobile-nav span::after {
+  bottom: -10px;
+}
+
+.mobile-nav {
+  background-color: #222222;
+}
+
+.mobile-nav span {
+  -webkit-transition: background 0 0.3s;
+          transition: background 0 0.3s;
+}
+
+.mobile-nav span::before,
+.mobile-nav span::after {
+  -webkit-transition-duration: 0.3s, 0.3s;
+          transition-duration: 0.3s, 0.3s;
+  -webkit-transition-delay: 0.3s, 0;
+          transition-delay: 0.3s, 0;
+}
+
+.mobile-nav span::before {
+  -webkit-transition-property: top, -webkit-transform;
+          transition-property: top, transform;
+}
+
+.mobile-nav span::after {
+  -webkit-transition-property: bottom, -webkit-transform;
+          transition-property: bottom, transform;
+}
+
+/* active state, i.e. menu open */
+.mobile-nav.active {
+  /*background-color: #4d9d45;*/
+}
+
+.mobile-nav.active span {
+  background: none;
+}
+
+.mobile-nav.active span::before {
+  top: 0;
+  -webkit-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
+.mobile-nav.active span::after {
+  bottom: 0;
+  -webkit-transform: rotate(-45deg);
+      -ms-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+}
+
+.mobile-nav.active span::before,
+.mobile-nav.active span::after {
+  -webkit-transition-delay: 0, 0.3s;
+          transition-delay: 0, 0.3s;
+}
