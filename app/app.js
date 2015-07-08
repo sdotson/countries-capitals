@@ -1,0 +1,1 @@
+angular.module('countriesApp',['countriesAppViews','countriesList','countryDetail','home']);
