@@ -4,27 +4,32 @@ angular.module('countries',[])
 countriesService.$inject = ['$http'];
 function countriesService($http) {
 	var countriesService = {
-		getCountries: getCountries
-	}
+			countries: countries || getCountries(),
+			getCountries: getCountries
+		},
+		countries;
 
 	function getCountries() {
-		$http({
+		var request = $http({
 			url: 'http://api.geonames.org/countryInfo',
 			method: 'GET',
+			cache: true,
 			params: {
-				username: 'sdotson2015'
+				username: 'sdotson2015',
+				type: 'JSON'
 			}
-		})
-		.success(countriesSuccess)
-		.error(countriesError);
+		});
+		return request.then(successHandler,errorHandler);
 	}
 
-	function countriesSuccess(response) {
-		console.log(response);
+	function successHandler(response) {
+		countries = response.data.geonames;
+		return countries;
 	}
 
-	function countriesError(response) {
+	function errorHandler(response) {
 		console.log(response);
+		return response;
 	}
 
 	return countriesService;
