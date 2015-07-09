@@ -1,6 +1,24 @@
-<p>I'm the countries-list view.</p>
-<div ng-repeat="country in countries">
-	{{country.countryName}}
+<div class="countries-container">
+	<table>
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Country Code</th>
+				<th>Capital</th>
+				<th>Area in km2</th>
+				<th>Population</th>
+				<th>Continent</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="c in countries">
+				<td>{{c.countryName}}</td>
+				<td>{{c.countryCode}}</td>
+				<td>{{c.capital}}</td>
+				<td>{{c.areaInSqKm | number}}</td>
+				<td>{{c.population | number}}</td>
+				<td>{{c.continent}}</td>
+			</tr>
+		</tbody>
+	</table>
 </div>
-
-{{countries|json}}
