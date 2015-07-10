@@ -13,8 +13,8 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr ng-repeat="c in filteredCountries = (countries | filter: myFilter)">
-				<td ng-click="redirect(c)">{{c.countryName}}</td>
+			<tr ng-repeat="c in filteredCountries = (countries | filter: myFilter)" ng-click="redirect(c)">
+				<td>{{c.countryName}}</td>
 				<td>{{c.countryCode}}</td>
 				<td>{{c.capital}}</td>
 				<td>{{c.areaInSqKm | number}}</td>

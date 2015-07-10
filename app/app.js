@@ -1,5 +1,5 @@
-angular.module('countriesApp',['countriesList','countryDetail','home'])
-	.run(function($rootScope) {
+angular.module('countriesApp',['countriesList','countryDetail','home','countries'])
+	.run(function($rootScope, countriesService) {
 		$rootScope.$on('$routeChangeStart', function() {
       $rootScope.isLoading = true;
     });

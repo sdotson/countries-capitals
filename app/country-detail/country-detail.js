@@ -11,18 +11,26 @@ function config($routeProvider) {
 			countryName: function($route) {
 				return $route.current.params.country;
 			},
-			countries: function(countriesService) {
-				return countriesService.countries;
+			country2: function(countriesService, $route) {
+				return countriesService.getCountry($route.current.params.country);
 			},
-			capital: function($route) {
-				return $route.current.params.capital;
-			}
+			countries: function(countriesService) {
+				return countriesService.getCountries();
+			},
+			capital: function($route, countriesService) {
+				return countriesService.getCapital($route.current.params.capital);
+			},
+			/*neighbors: function($route, countriesService) {
+				console.log('country: ' + countriesService.currentCountry);
+				return countriesService.getNeighbors(countriesService.currentCountry.countryCode);
+			},*/
 		}
 	})
 }
 
 /*countryController.$inject = [''];*/
-function DetailCtrl($scope, $filter, countryName, countries) {
-	console.log(countriesService.currentCountry);
+function DetailCtrl($scope, countries, capital, country2) {
 	$scope.country = countriesService.currentCountry;
+	$scope.capital = capital;
+	console.log(country2);
 }

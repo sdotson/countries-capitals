@@ -9,7 +9,7 @@ function config($routeProvider) {
 		controller: CountriesCtrl,
 		resolve: {
 			countries: function(countriesService) {
-				return countriesService.countries;
+				return countriesService.getCountries();
 			}
 		}
 	});

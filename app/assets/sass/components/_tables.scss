@@ -18,6 +18,11 @@ tbody {
 
 	tr {
 		cursor: pointer;
+
+    &:hover {
+      background-color: orange !important;
+      color: #fff;
+    }
 	}
 
   tr:nth-child(even) {
