@@ -15,7 +15,12 @@ function config($routeProvider) {
 	});
 }
 
-CountriesCtrl.$inject = ['$scope','countries'];
-function CountriesCtrl($scope, countries) {
+CountriesCtrl.$inject = ['$scope','$location', 'countries'];
+function CountriesCtrl($scope, $location, countries) {
 	$scope.countries = countries;
+
+	$scope.redirect = function (obj) {
+		countriesService.currentCountry = obj;
+		$location.path('countries/' + obj.countryName + '/' + obj.capital);
+	}
 };

@@ -1,1 +1,18 @@
 /* buttons */
+.btn {
+	display: inline-block;
+	padding: 10px 20px;
+	text-transform: uppercase;
+	border-radius: 5px;
+	background: #222;
+	font-weight: bold;
+	color: #fff;
+	border: 2px solid #222;
+	line-height: 1;
+
+	&:hover {
+		background-color: #fff;
+		color: #222;
+		text-decoration: none;
+	}
+}

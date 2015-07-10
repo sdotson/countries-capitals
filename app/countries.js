@@ -1,12 +1,14 @@
 angular.module('countries',[])
 	.factory('countriesService', countriesService);
 
-countriesService.$inject = ['$http'];
-function countriesService($http) {
+countriesService.$inject = ['$http','$filter'];
+function countriesService($http, $filter) {
 	var countriesService = {
 			countries: countries || getCountries(),
-			getCountries: getCountries
+			currentCountry: currentCountry,
+			getCountry: getCountry
 		},
+		currentCountry,
 		countries;
 
 	function getCountries() {
@@ -19,17 +21,23 @@ function countriesService($http) {
 				type: 'JSON'
 			}
 		});
-		return request.then(successHandler,errorHandler);
+		return request.then(countriesSuccess,countriesError);
 	}
 
-	function successHandler(response) {
+	function countriesSuccess(response) {
 		countries = response.data.geonames;
 		return countries;
 	}
 
-	function errorHandler(response) {
+	function countriesError(response) {
 		console.log(response);
 		return response;
+	}
+
+	function getCountry(countryName) {
+		countries = countries || getCountries();
+		console.log(countries);
+		return $filter('filter')(countries, countryName);
 	}
 
 	return countriesService;

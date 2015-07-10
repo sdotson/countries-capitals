@@ -1,5 +1,7 @@
 <div class="countries-container">
-	<table>
+	<p>Filter: <input type="text" ng-model="myFilter"></p>
+	<p ng-show="!filteredCountries.length">Unfortunately. there are no countries that meet the criteria specified in the filter.</p>
+	<table ng-show="filteredCountries.length">
 		<thead>
 			<tr>
 				<th>Name</th>
@@ -11,8 +13,8 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr ng-repeat="c in countries">
-				<td>{{c.countryName}}</td>
+			<tr ng-repeat="c in filteredCountries = (countries | filter: myFilter)">
+				<td ng-click="redirect(c)">{{c.countryName}}</td>
 				<td>{{c.countryCode}}</td>
 				<td>{{c.capital}}</td>
 				<td>{{c.areaInSqKm | number}}</td>
@@ -22,3 +24,5 @@
 		</tbody>
 	</table>
 </div>
+
+<p><a href="#/" class="btn">Home</a></p>

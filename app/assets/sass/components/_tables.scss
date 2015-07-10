@@ -1,0 +1,26 @@
+/* tables */
+
+table {
+  border-collapse: collapse;
+}
+
+thead {
+  background: #222;
+  color: #fff;
+}
+
+th, td {
+  text-align: left;
+  padding: 3px 8px;
+}
+
+tbody {
+
+	tr {
+		cursor: pointer;
+	}
+
+  tr:nth-child(even) {
+    background-color: #ddd;
+  }
+}

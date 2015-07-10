@@ -1,1 +1,10 @@
-<p>I'm the country-detail view.</p>
+<h1>{{country.countryName}}</h1>
+<div class="country-detail">
+	<strong>Population of country</strong>: {{country.population | number}}<br>
+	<strong>Area</strong>: {{country.areaInSqKm | number}}<br>
+	<strong>Capital</strong>: {{country.capital}}<br>
+	<strong>Population of Capital</strong>: <br>
+	<strong>Neighbors</strong>:
+</div>
+{{country}}
+<p><a href="#/" class="btn">Home</a> <a href="#/countries" class="btn">Browse Countries</a></p>
