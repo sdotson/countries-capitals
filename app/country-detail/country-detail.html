@@ -4,7 +4,6 @@
 	<strong>Area</strong>: {{country.areaInSqKm | number}}<br>
 	<strong>Capital</strong>: {{country.capital}}<br>
 	<strong>Population of Capital</strong>: {{capital.population | number}}<br>
-	<strong>Neighbors</strong>:
+	<strong>{{neighbors.length}} Neighbors</strong>: <span ng-repeat="n in neighbors">{{n.countryName}}, </span>
 </div>
-{{country}}
 <p><a href="#/" class="btn">Home</a> <a href="#/countries" class="btn">Browse Countries</a></p>

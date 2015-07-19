@@ -34,13 +34,13 @@ function countriesService($http, $filter) {
 					username: 'sdotson2015',
 					type: 'JSON'
 				}
-			});
+			}),
 			response = request.then(countriesSuccess,countriesError);
 		} else {
 			response = countriesService.countries;
 		};
+
 		return response;
-		console.log('getCountries() executed.');
 	}
 
 	function getCapital(capital) {
@@ -70,7 +70,6 @@ function countriesService($http, $filter) {
 	}
 
 	function neighborsSuccess(response) {
-		console.log(response);
 		return response.data.geonames;
 	}
 
@@ -94,13 +93,14 @@ function countriesService($http, $filter) {
 	}
 
 	function countriesError(response) {
+		console.log('error');
+		console.log(response);
 		return response;
 	}
 
 	function getCountry(countryName) {
-		var countryIndex = searchArray(countriesService.countries, countryName);
-		console.log('countryIndex is ' + countryIndex);
-		return countriesService.currentCountry = countryName;
+		countriesService.currentCountry = searchArray(countriesService.countries, countryName)
+		return countriesService.currentCountry;
 	}
 
 	return countriesService;
