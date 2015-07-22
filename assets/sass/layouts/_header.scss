@@ -9,5 +9,9 @@
 		font-size: 50px;
     margin-bottom: 0px;
     color: #fff;
+
+    @media screen and (max-width: 600px) {
+      font-size: 32px;
+    }
 	}
 }
