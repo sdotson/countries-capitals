@@ -1,19 +1,19 @@
-angular.module('countries',[])
-	.factory('countriesService', countriesService);
+angular.module('countries', [])
+    .factory('countriesService', countriesService);
 
-countriesService.$inject = ['$http','$filter'];
-function countriesService($http, $filter) {
+countriesService.$inject = ['$http', '$filter', '$q'];
+function countriesService($http, $filter, $q) {
 	var countriesService = {
 			countries: countries,
 			currentCountry: currentCountry,
 			getCountry: getCountry,
 			getCountries: getCountries,
 			getCapital: getCapital,
-			getNeighbors: getNeighbors
+			getNeighbors: getNeighbors,
+			getCountryDetails: getCountryDetails
 		},
 		currentCountry,
 		countries;
-
 
 	function searchArray(array,valuetofind) {
     for (i = 0; i < array.length; i++) {
@@ -24,7 +24,27 @@ function countriesService($http, $filter) {
 	    return -1;
 	}
 
+	function getCountryDetails(country, capital) {
+		var deferred = $q.defer();
+
+		countriesService.getCountries()
+			.then(function () {
+				return $q.all([
+					countriesService.getCountry(country),
+					countriesService.getCapital(capital)
+				]).then(function () {
+					console.log('countryCode is ' + countriesService.currentCountry.countryCode);
+					return countriesService.getNeighbors(countriesService.currentCountry.countryCode);
+				}).then(function(response) {
+					deferred.resolve(response);
+				});
+			});
+		return deferred.promise;
+	}
+
 	function getCountries() {
+		var deferred = $q.defer();
+
 		if (!countriesService.countries) {
 			var request = $http({
 				url: 'http://api.geonames.org/countryInfo',
@@ -35,25 +55,35 @@ function countriesService($http, $filter) {
 					type: 'JSON'
 				}
 			}),
-			response = request.then(countriesSuccess,countriesError);
+			response = request.then(countriesSuccess, promiseError);
+			deferred.resolve(response);
 		} else {
 			response = countriesService.countries;
+			deferred.resolve(response);
 		};
 
-		return response;
+		return deferred.promise;
 	}
 
 	function getCapital(capital) {
-		var request = $http({
-			url: 'http://api.geonames.org/searchJSON',
-			method: 'GET',
-			cache: true,
-			params: {
-				username: 'sdotson2015',
-				q: capital
-			}
-		});
-		return request.then(capitalSuccess,capitalError);
+		var deferred = $q.defer();
+		if (!capital) {
+			deferred.resolve('');
+		} else {
+			var request = $http({
+				url: 'http://api.geonames.org/searchJSON',
+				method: 'GET',
+				cache: true,
+				params: {
+					username: 'sdotson2015',
+					q: capital
+				}
+			});
+
+			deferred.resolve(request.then(capitalSuccess, promiseError));
+		};
+
+		return deferred.promise;
 	}
 
 	function getNeighbors(country) {
@@ -66,36 +96,28 @@ function countriesService($http, $filter) {
 				country: country
 			}
 		});
-		return request.then(neighborsSuccess,neighborsError);
+		return request.then(neighborsSuccess, promiseError);
 	}
 
 	function neighborsSuccess(response) {
+		countriesService.currentCountry.neighbors = response.data.geonames;
 		return response.data.geonames;
 	}
 
-	function neighborsError(response) {
+	function promiseError(response) {
 		console.log(response);
 		return response;
 	}
 
 	function capitalSuccess(response) {
+		countriesService.currentCountry.capital = response.data.geonames[0].name;
+		countriesService.currentCountry.capitalPopulation = response.data.geonames[0].population;
 		return response.data.geonames[0];
 	}
 
-	function capitalError(response) {
-		return response;
-	}
-
 	function countriesSuccess(response) {
-		console.log('countriesSuccess executed');
 		countriesService.countries = response.data.geonames;
 		return countriesService.countries;
-	}
-
-	function countriesError(response) {
-		console.log('error');
-		console.log(response);
-		return response;
 	}
 
 	function getCountry(countryName) {

@@ -28,6 +28,7 @@ h1, h2, h3, h4, h5 ,h6 {
 h1 {
 	font-size: 48px;
 	text-transform: uppercase;
+	color: #089de3;
 }
 
 h2 {
@@ -86,7 +87,7 @@ ul, ol, blockquote {
 
 a {
 	text-decoration: none;
-	color: #0e76bc;
+	color: #089de3;
 
 	&:hover {
 		text-decoration: underline;
