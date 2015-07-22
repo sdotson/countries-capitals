@@ -1,0 +1,31 @@
+/* tables */
+
+table {
+  border-collapse: collapse;
+}
+
+thead {
+  background: #222;
+  color: #fff;
+}
+
+th, td {
+  text-align: left;
+  padding: 3px 8px;
+}
+
+tbody {
+
+	tr {
+		cursor: pointer;
+
+    &:hover {
+      background-color: #025a84 !important;
+      color: #fff;
+    }
+	}
+
+  tr:nth-child(even) {
+    background-color: #ddd;
+  }
+}

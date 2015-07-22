@@ -1,0 +1,82 @@
+/* main content section in interior pages */
+.main {
+	padding: 30px 0px;
+  text-align: center;
+  position: relative;
+  min-height: 100%;
+}
+
+.content {
+  display: block;
+  width: 650px;
+  margin: auto;
+  text-align: left;
+  position: relative;
+  opacity: 1;
+
+  @media screen and (max-width: 600px) {
+    width: auto;
+  }
+}
+
+.view {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  transition: all 500ms ease-out;
+  opacity: 1;
+
+  &.ng-leave.ng-leave-active,
+  &.ng-enter {
+    opacity: 0;
+    z-index: 20;
+  }
+  &.ng-enter.ng-enter-active,
+  &.ng-leave {
+    opacity: 1;
+    z-index: 10;
+  }
+}
+
+.loader {
+  position: absolute;
+  opacity: 0;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  background: url(../images/gears.gif) center no-repeat;
+  background-color: #fff;
+  transition: all 500ms ease-out;
+
+  &.ng-leave.ng-leave-active,
+  &.ng-enter {
+    opacity: 0;
+    z-index: 10;
+  }
+
+  &.ng-enter.ng-enter-active,
+  &.ng-leave {
+    opacity: 1;
+    z-index: 20;
+  }
+}
+
+
+.countries-container, .country-detail {
+	margin-bottom: 30px;
+}
+
+.country-images {
+  margin-bottom: 30px;
+}
+
+.country-shape, .flag {
+  height: auto;
+  max-width: 200px;
+}
+
+.country-shape {
+  margin-right: 30px;
+}

@@ -1,0 +1,105 @@
+::selection {
+	background-color: $bluegray;
+}
+::-moz-selection {
+	background-color: $bluegray;	
+}
+
+/* typography */
+body {
+	font-family: 'helvetica', sans-serif;
+	font-size: 20px;
+	-webkit-font-smoothing: antialiased;
+
+	@media screen and (max-width: 400px) {
+		font-size: 16px;
+	}
+}
+
+p, ul, ol, blockquote {
+	margin-bottom: 21px;
+}
+
+h1, h2, h3, h4, h5 ,h6 {
+	line-height: 1.1;
+	margin-bottom: 21px;
+}
+
+h1 {
+	font-size: 48px;
+	text-transform: uppercase;
+	color: #089de3;
+}
+
+h2 {
+	font-size: 30px;
+}
+
+h3 {
+	font-size: 25px;
+}
+
+h4 {
+	font-size: 20px;
+}
+
+p, ul, ol, blockquote {
+	line-height: 1.5;
+}
+
+ul, ol, blockquote {
+	margin-left: 30px;
+}
+
+.col-left ul {
+	list-style: none;
+
+	li {
+		position: relative;
+
+		&:before {
+			content:'\25cf';
+			display: block;
+			position: absolute;
+			left: -15px;
+			color: #0e76bc;
+		}
+	}
+}
+
+.col-left ol {
+	counter-reset: standard;
+	list-style: none;
+
+	li {
+		counter-increment: standard;
+		position: relative;
+
+		&:before {
+			content: counter(standard)".";
+			display: block;
+			position: absolute;
+			left: -15px;
+			color: #0e76bc;
+		}	
+	}
+}
+
+a {
+	text-decoration: none;
+	color: #089de3;
+
+	&:hover {
+		text-decoration: underline;
+	}
+}
+
+figcaption {
+	font-size: 13px;
+	font-style: italic;
+	color: #999;
+}
+
+figure {
+	margin: 0px 0px 21px;
+}
