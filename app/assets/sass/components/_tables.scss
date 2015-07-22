@@ -18,14 +18,40 @@ tbody {
 
 	tr {
 		cursor: pointer;
+    -moz-transition: all 250ms ease-out;
+    transition: all 250ms ease-out;
 
     &:hover {
       background-color: #025a84 !important;
       color: #fff;
     }
+
+    &.ng-leave.ng-leave-active {
+      opacity: 0;
+      background: #ff3500 !important;
+    }
+    &.ng-enter.ng-enter-active {
+      background: #00e96c !important;
+      opacity: 1;
+    }
+
+    &.ng-enter-stagger {
+      transition-delay: 500ms;
+    }
+
+    &.ng-leave-stagger {
+      transition-delay: 500ms;
+    }
+
 	}
 
   tr:nth-child(even) {
     background-color: #ddd;
+  }
+}
+
+.dispensable {
+  @media screen and (max-width: 600px) {
+    display: none;
   }
 }
