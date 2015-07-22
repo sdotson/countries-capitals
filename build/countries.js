@@ -33,7 +33,6 @@ function countriesService($http, $filter, $q) {
 					countriesService.getCountry(country),
 					countriesService.getCapital(capital)
 				]).then(function () {
-					console.log('countryCode is ' + countriesService.currentCountry.countryCode);
 					return countriesService.getNeighbors(countriesService.currentCountry.countryCode);
 				}).then(function(response) {
 					deferred.resolve(response);
@@ -105,7 +104,6 @@ function countriesService($http, $filter, $q) {
 	}
 
 	function promiseError(response) {
-		console.log(response);
 		return response;
 	}
 

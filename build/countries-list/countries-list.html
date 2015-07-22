@@ -5,21 +5,21 @@
 		<thead>
 			<tr>
 				<th>Name</th>
-				<th>Country Code</th>
+				<th class="dispensable">Country Code</th>
 				<th>Capital</th>
-				<th>Area in km2</th>
-				<th>Population</th>
-				<th>Continent</th>
+				<th class="dispensable">Area in km2</th>
+				<th class="dispensable">Population</th>
+				<th class="dispensable">Continent</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr ng-repeat="c in filteredCountries = (countries | filter: myFilter)" ng-click="redirect(c)">
 				<td>{{c.countryName}}</td>
-				<td>{{c.countryCode}}</td>
+				<td class="dispensable">{{c.countryCode}}</td>
 				<td>{{c.capital}}</td>
-				<td>{{c.areaInSqKm | number}}</td>
-				<td>{{c.population | number}}</td>
-				<td>{{c.continent}}</td>
+				<td class="dispensable">{{c.areaInSqKm | number}}</td>
+				<td class="dispensable">{{c.population | number}}</td>
+				<td class="dispensable">{{c.continent}}</td>
 			</tr>
 		</tbody>
 	</table>
