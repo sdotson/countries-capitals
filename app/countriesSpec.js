@@ -1,4 +1,4 @@
-/*describe('countriesService', inject(function (countriesService) {
+describe('countriesService', inject(function (countriesService) {
 	beforeEach(module('countries'));
-
-}));*/
+  
+}));
