@@ -1,6 +1,6 @@
 angular.module('countryDetail',['ngRoute','countries'])
 	.config(config)
-	.controller(DetailCtrl);
+	.controller('DetailCtrl', DetailCtrl);
 
 config.$inject = ['$routeProvider'];
 function config($routeProvider) {

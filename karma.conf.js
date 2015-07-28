@@ -19,12 +19,20 @@ module.exports = function(config) {
         './app/bower_components/angular-animate/angular-animate.js',
         './app/bower_components/angular-route/angular-route.js',
         './app/bower_components/angular-mocks/angular-mocks.js',
+        './app/bower_components/jquery/dist/jquery.js',
+        './app/bower_components/jasmine-jquery/lib/jasmine-jquery.js',
         './app/app.js',
         './app/countries.js',
         './app/countriesSpec.js',
         './app/home/*.js',
         './app/countries-list/*.js',
         './app/country-detail/*.js',
+        {
+            pattern: './mocks/*.json',
+            watched: true,
+            served: true,
+            included: false
+        }
     ],
 
 
