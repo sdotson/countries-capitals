@@ -1,7 +1,9 @@
 describe('countriesService', function(countries) {
   var countriesService,
     $httpBackend,
-    countriesURL = 'http://api.geonames.org/countryInfo?type=JSON&username=sdotson2015';
+    countriesURL = 'http://api.geonames.org/countryInfo?type=JSON&username=sdotson2015',
+    capitalURL = 'http://api.geonames.org/searchJSON?q=Brussels&username=sdotson2015',
+    neighborsURL = 'http://api.geonames.org/neighboursJSON?country=BE&username=sdotson2015';
 
 	beforeEach(module('countries'));
 
@@ -16,9 +18,19 @@ describe('countriesService', function(countries) {
         getJSONFixture('countries.json')
       );
 
+    $httpBackend.whenGET(capitalURL)
+      .respond(
+        getJSONFixture('capital.json')
+      );
+
+    $httpBackend.whenGET(neighborsURL)
+      .respond(
+        getJSONFixture('neighbors.json')
+      );
+
   }));
 
-  it('should have countries service', function() {
+  it('should exist', function() {
     expect(countriesService).toBeDefined();
   });
 
@@ -30,6 +42,7 @@ describe('countriesService', function(countries) {
     expect(countriesService.countries.length).toBeGreaterThan(0);
     expect(countriesService.countries.length).toEqual(250);
   });
+
 
   it('should return country object', function() {
     $httpBackend.expectGET(countriesURL);
@@ -43,39 +56,29 @@ describe('countriesService', function(countries) {
 
   });
 
+  it('should return capital population and country object', function() {
+    $httpBackend.expectGET(capitalURL);
 
-  /*it('getCountry returns object', inject(function (countriesService, $q, $http) {
-   countriesService.countries = [{
-      countryName: 'France',
-      capital: 'Paris'
-    }];
+    countriesService.currentCountry = {};
 
-    console.log(countriesService.getCountry);
+    countriesService.getCapital('Brussels');
+    $httpBackend.flush();
 
-    countriesService.getCountry('France').then(function(data) {
-      assert.isObject(data);
-    });
-  }));*/
+    expect(countriesService.currentCountry.capital).toEqual('Brussels');
+    expect(countriesService.currentCountry.capitalPopulation).toEqual(1019022);
+  });
 
-  /*it('getCapital returns object', inject(function (countriesService, $q, $http) {
-    countriesService.getCapital('Paris').then(function(data) {
-      console.log(data);
-      assert.isObject(data);
-    });
-  }));
+  it('should return neighbor objects', function() {
+    $httpBackend.expectGET(neighborsURL);
 
-  it('getNeighbors returns object', inject(function (countriesService, $q, $http) {
-    countriesService.getNeighbors().then(function(data) {
-      console.log(data);
-      assert.isObject(data);
-    });
-  }));
+    countriesService.currentCountry = {};
 
-  it('getCountryDetails returns object', inject(function (countriesService, $q, $http) {
-    countriesService.getCountryDetails().then(function(data) {
-      console.log(data);
-      assert.isObject(data);
-    });
-  }));*/
+    countriesService.getNeighbors('BE');
+    $httpBackend.flush();
+
+    expect(countriesService.currentCountry.neighbors[0].countryName).toEqual('France');
+
+  });
+  
 
 });
