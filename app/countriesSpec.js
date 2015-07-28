@@ -72,11 +72,20 @@ describe('countriesService', function(countries) {
     $httpBackend.expectGET(neighborsURL);
 
     countriesService.currentCountry = {};
-
     countriesService.getNeighbors('BE');
     $httpBackend.flush();
 
     expect(countriesService.currentCountry.neighbors[0].countryName).toEqual('France');
+
+  });
+
+  it('should return country details', function() {
+    countriesService.getCountryDetails('Belgium', 'Brussels');
+    $httpBackend.flush();
+    
+    expect(countriesService.currentCountry.countryName).toEqual('Belgium');
+    countriesService.getCountry('asdfsdf');
+    expect(countriesService.currentCountry).toEqual(-1);
 
   });
   
