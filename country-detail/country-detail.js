@@ -1,12 +1,12 @@
 angular.module('countryDetail',['ngRoute','countries'])
 	.config(config)
-	.controller(DetailCtrl);
+	.controller('DetailCtrl', DetailCtrl);
 
 config.$inject = ['$routeProvider'];
 function config($routeProvider) {
 	$routeProvider.when('/countries/:country/:capital?', {
 		templateUrl: 'country-detail/country-detail.html',
-		controller: DetailCtrl,
+		controller: 'DetailCtrl',
 		resolve: {
 			detail: ['countriesService', '$route', '$q', function (countriesService, $route, $q) {
 				return countriesService.getCountryDetails($route.current.params.country, $route.current.params.capital);
